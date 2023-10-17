@@ -57,9 +57,9 @@ def update_metrics(line, total_file_size, status_codes_stats):
 def run():
     '''Starts the log parser.
     '''
-    lineNum = 0
-    cumm_fileSize = 0
-    status_codesStats = {
+    line_num = 0
+    total_file_size = 0
+    status_codes_stats = {
         '200': 0,
         '301': 0,
         '400': 0,
@@ -72,16 +72,16 @@ def run():
     try:
         while True:
             line = input()
-            cumm_fileSize = update_metrics(
+            total_file_size = update_metrics(
                 line,
-                cumm_fileSize,
-                status_codesStats,
+                total_file_size,
+                status_codes_stats,
             )
-            lineNum += 1
-            if lineNum % 10 == 0:
-                print_statistics(cumm_fileSize, status_codesStats)
+            line_num += 1
+            if line_num % 10 == 0:
+                print_statistics(total_file_size, status_codes_stats)
     except (KeyboardInterrupt, EOFError):
-        print_statistics(cumm_fileSize, status_codesStats)
+        print_statistics(total_file_size, status_codes_stats)
 
 
 if __name__ == '__main__':
